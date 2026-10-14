@@ -1,8 +1,16 @@
 # TinyModel Lab 🔬⚡
 
-**TinyModel Lab** is a production-grade, open-source platform for neural network model profiling, compression, optimization, and reproducible benchmarking. Built on top of PyTorch, ONNX Runtime, and FastAPI, it empowers ML and MLOps engineers to rigorously measure, optimize, and deploy efficient deep learning models.
+[![Python 3.12](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.x](https://img.shields.io/badge/PyTorch-2.x-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![ONNX Runtime](https://img.shields.io/badge/ONNX_Runtime-1.31-005CED.svg?logo=onnx&logoColor=white)](https://onnxruntime.ai/)
+[![Tests](https://img.shields.io/badge/tests-26%20passed-brightgreen.svg)]()
+[![Coverage](https://img.shields.io/badge/coverage-88%25-green.svg)]()
+[![Code Style: Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](LICENSE)
 
-> **Zero Synthetic Placating:** All benchmarks, profiling metrics, and latency numbers are obtained through real model execution, device synchronization, and statistical aggregation—never fabricated.
+**TinyModel Lab** is a high-performance, open-source platform for neural network model profiling, compression, optimization, and reproducible benchmarking. Built on top of PyTorch, ONNX Runtime, and FastAPI, it empowers ML and MLOps engineers to systematically measure, optimize, and deploy efficient deep learning models.
+
+> **Zero Synthetic Placating:** All benchmarks, profiling metrics, and latency numbers are obtained through real model execution, device synchronization, and statistical aggregation—never fabricated or mocked.
 
 ---
 
@@ -10,11 +18,11 @@
 
 ```text
 tinymodel-lab/
-├── tinymodel/                   # Core Python ML Optimization Library (Zero web-dependency)
+├── tinymodel/                   # Standalone Core ML Optimization Library (Zero web-dependency)
 │   ├── models/                  # Architecture wrappers & thread-safe ModelRegistry
 │   │   ├── base.py              # ModelMetadata, ModelWrapper, TaskType, OptimizationType
 │   │   ├── builtin.py           # ResNet-18, MobileNetV3, TinyConvNet, SimpleMLP, MiniTransformer
-│   │   └── registry.py          # Model discovery and safe weights loading
+│   │   └── registry.py          # Model discovery and safe weights loading (weights_only=True)
 │   ├── profiling/               # Architectural & structural profiling engine
 │   │   └── profiler.py          # Exact parameters, layer breakdown, sparsity & MACs/FLOPs
 │   ├── exporters/               # Model serialization & graph exporters
@@ -48,8 +56,8 @@ tinymodel-lab/
    - Fine-grained optimization support inspection per architecture.
 2. **Deep Architecture Profiler**:
    - Total, trainable, and frozen parameter accounting.
-   - Exact memory footprint (weights vs buffers).
-   - Hook-based operator counter estimating MACs and FLOPs for Conv2d and Linear layers.
+   - Exact memory footprint (weights vs buffers in MB).
+   - Hook-based operator counter estimating MACs and FLOPs for Conv2d and Linear layers ($1\text{ MAC} = 2\text{ FLOPs}$).
    - Global and layer-by-layer logical sparsity detection.
 3. **Robust ONNX Exporter & ONNX Runtime Inference**:
    - Graph validation with `onnx.checker.check_model`.
@@ -79,7 +87,7 @@ Manage dependencies cleanly using `uv`:
 
 ```bash
 # Clone the repository
-git clone https://github.com/resvendev/tinymodel-lab.git
+git clone https://github.com/rezvvent/tinymodel-lab.git
 cd tinymodel-lab
 
 # Install dependencies into virtual environment

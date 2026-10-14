@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "TinyModel Lab — ML Model Compression, Optimization, Profiling & Benchmarking Platform"
 readme = "README.md"
 authors = [
-    { name = "resvendev", email = "pabloarabov@gmail.com" }
+    { name = "rezvvent", email = "pabloarabov@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
